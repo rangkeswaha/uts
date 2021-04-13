@@ -1,17 +1,59 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Photo and Note
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card class="ion-text-center">
+    <ion-card-header>
+      <ion-card-title (click)="uploadFoto()">Upload Foto</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label></ion-label>
+      <ion-button color='primary' shape="round" size="medium" (click)="uploadFoto()">Upload</ion-button>
+    </ion-card-content>
+  </ion-card>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let isiFoto of fotoservice.dataFoto; let i = index">
+        <ion-img [src]="isiFoto.webviewPath" (click)="getNama(isiFoto)"></ion-img>
+        <center><ion-label>{{isiFoto.filePath}}</ion-label></center>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+  <ion-card>
+    <ion-item><ion-label>Foto Selected</ion-label></ion-item>
+    <ion-item>{{fototitle}}</ion-item>
+    <ion-item>
+      <ion-label>Judul Note</ion-label>
+    </ion-item>
+    <ion-item><ion-input placeholder="Judul" [(ngModel)]="judulnote" type="text"></ion-input></ion-item>
+    <ion-item>
+      <ion-label>Isi</ion-label>
+    </ion-item>
+    <ion-item><ion-input placeholder="Isi" [(ngModel)]="isinote" type="text"></ion-input></ion-item>
+    <ion-item>
+      <ion-label>Tanggal</ion-label>
+    </ion-item>
+    <ion-item><ion-input style="max-width: 150px;" [(ngModel)]="tanggalnote" type="date"></ion-input></ion-item>
+    <ion-item>
+      <ion-label>Nilai Note</ion-label>
+    </ion-item>
+    <ion-item><ion-input placeholder="Nilai 1 - 10" [(ngModel)]="nilainote" type="text"></ion-input></ion-item>
+    <ion-footer>
+      <ion-button (click)="clickupload()">UPLOAD</ion-button>
+    </ion-footer>
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="tambahfoto()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
