@@ -76,9 +76,15 @@ export class Tab2Page {
 
   }
 
-  deleteFile() {
+  deleteFile(judul: string, isi: string, tanggal: string, nilai: string, foto: string) {
+
     this.refimg.delete().then(() => {
       this.loadFiles();
+    });
+    this.isiDataColl.doc(judul).delete().then(() => {
+        console.log("Document successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
     });
   }
 
@@ -88,5 +94,10 @@ export class Tab2Page {
     });
   }
 
+// db.collection("cities").doc("DC").delete().then(() => {
+//     console.log("Document successfully deleted!");
+// }).catch((error) => {
+//     console.error("Error removing document: ", error);
+// });
 
 }
