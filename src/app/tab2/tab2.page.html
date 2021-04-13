@@ -7,11 +7,35 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let data of isiData | async">
+      <div *ngFor="let ifoto of cloudFiles">
+        <div *ngIf=" ifoto.name == data.foto">
+          <ion-img (click)="passinfo()" style="max-width: 100px; max-height: 100px;" [src]="ifoto.url"></ion-img>
+        </div>
+      </div>
+      <ion-label style="margin-left: 10px;">
+        <h2>Judul : {{data.judul}}</h2>
+        <h3>Isi : {{data.isi}}</h3>
+        <p>Tanggal : {{data.tanggal}}</p>
+        <p>Nilai : {{data.nilai}}</p>
+      </ion-label>
+      <ion-button slot="end" (click)="passinfo(data.judul, data.isi, data.tanggal, data.nilai, data.foto)">DETAIL</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-list>
+    <ion-item *ngFor="let data of isiData | async">
+      <h1>{{data.judul}}</h1>
+      <p>{{data.isi}}</p>
+      <p>{{data.tanggal}}</p>
+      <p>{{data.nilai}}</p>
+      <div *ngFor="let ifoto of cloudFiles">
+        <div *ngIf=" ifoto.name == data.foto">
+          <ion-img style="max-width: 100px; max-height: 100px;" [src]="ifoto.url"></ion-img>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list> -->
 </ion-content>

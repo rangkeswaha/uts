@@ -1,17 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>
-      Tab 3
+      Detail
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div *ngFor="let ifoto of cloudFiles">
+    <div [(ngModel)]="foto" *ngIf=" ifoto.name == foto">
+      <center><ion-img style="max-width: 700px; max-height: 700px;" [src]="ifoto.url"></ion-img></center>
+      <ion-item>
+        <ion-input [(ngModel)]="judul"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="isi"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="tanggal"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="nilai"></ion-input>
+      </ion-item>
+    </div>
+  </div>
+  <center><ion-button>UPDATE</ion-button></center>
 </ion-content>
+
+<!-- <ion-list>
+  <ion-item *ngFor="let data of isiData | async">
+    <div *ngFor="let ifoto of cloudFiles">
+      <div *ngIf=" ifoto.name == data.foto">
+        <ion-img (click)="passinfo()" style="max-width: 100px; max-height: 100px;" [src]="ifoto.url"></ion-img>
+      </div>
+    </div>
+    <ion-label style="margin-left: 10px;">
+      <h2>Judul : {{data.judul}}</h2>
+      <h3>Isi : {{data.isi}}</h3>
+      <p>Tanggal : {{data.tanggal}}</p>
+      <p>Nilai : {{data.nilai}}</p>
+    </ion-label>
+    <ion-button slot="end" (click)="passinfo(data.judul, data.isi, data.tanggal, data.nilai, data.foto)">DETAIL</ion-button>
+  </ion-item>
+</ion-list> -->

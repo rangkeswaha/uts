@@ -13,6 +13,10 @@ export class FotoService {
     this.platform = platform;
    }
 
+  public passjudul : string = ""
+  public passisi : string = ""
+  public passtanggal : string = ""
+  public passnilai : string = ""
   public passurlfoto : string = ""
 
   public dataFoto : Photo[] = [];
