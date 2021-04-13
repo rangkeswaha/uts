@@ -12,7 +12,7 @@
     <ion-item *ngFor="let data of isiData | async">
       <div *ngFor="let ifoto of cloudFiles">
         <div *ngIf=" ifoto.name == data.foto">
-          <ion-img (click)="passinfo()" style="max-width: 100px; max-height: 100px;" [src]="ifoto.url"></ion-img>
+          <ion-img (click)="passinfo()" style="max-width: 300px; max-height: 300px;" [src]="ifoto.url"></ion-img>
         </div>
       </div>
       <ion-label style="margin-left: 10px;">
